@@ -1,4 +1,4 @@
-package com.luugiathuy.apps.remotebluetooth;
+package org.sgp715.apps.remotebluetooth;
 
 public class RemoteBluetoothServer{
 	

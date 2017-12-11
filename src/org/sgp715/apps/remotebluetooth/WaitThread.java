@@ -1,6 +1,8 @@
-package com.luugiathuy.apps.remotebluetooth;
+package org.sgp715.apps.remotebluetooth;
 
 import java.io.IOException;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.bluetooth.BluetoothStateException;
 import javax.bluetooth.DiscoveryAgent;
@@ -12,8 +14,11 @@ import javax.microedition.io.StreamConnectionNotifier;
 
 public class WaitThread implements Runnable{
 
+	private BlockingQueue<Character> charQ;
+
 	/** Constructor */
 	public WaitThread() {
+        charQ = new LinkedBlockingQueue();
 	}
 	
 	@Override
@@ -53,10 +58,10 @@ public class WaitThread implements Runnable{
 			try {
 				System.out.println("waiting for connection...");
 	            connection = notifier.acceptAndOpen();
-	            
-	            Thread processThread = new Thread(new ProcessConnectionThread(connection));
+	            Thread processThread = new Thread(new ProcessConnectionThread(connection, charQ));
 	            processThread.start();
-	            
+				Thread typeThread = new Thread(new TypeThread(charQ));
+				typeThread.start();
 			} catch (Exception e) {
 				e.printStackTrace();
 				return;
