@@ -19,7 +19,7 @@ public class TypeThread implements Runnable {
             try {
                 int newChar = ((Integer) charQ.take()).intValue();
                 if ((char) newChar == ' ') {
-                    board.type(currentToken);
+                    board.type(currentToken.toLowerCase());
                     currentToken = "";
                     continue;
                 } else {

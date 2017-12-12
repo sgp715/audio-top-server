@@ -20,7 +20,7 @@ public class Board {
         } catch (AWTException e) {
             e.printStackTrace();
         }
-        this.m = new Map(file);
+        this.m = new Map();
     }
 
     private static boolean isValidKey(int key) {
@@ -66,8 +66,8 @@ public class Board {
                 return;
             }
             else {
-                int mapVal = m.map(token);
-                if (mapVal >= 0) {
+                Integer mapVal = m.map(token.replaceAll("\\s+",""));
+                if (mapVal != null) {
                     send(mapVal);
                 } else {
                     sendKeys(token);
