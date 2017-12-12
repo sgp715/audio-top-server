@@ -5,14 +5,21 @@ import java.awt.event.KeyEvent;
 
 public class Board {
 
+    Robot robot;
+    private Map m;
+
     private boolean escape = true;
     private boolean shift = false;
     private boolean alter = false;
     private boolean control = false;
-    private Map m;
 
 
     public Board(String file) {
+        try {
+            this.robot = new Robot();
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
         this.m = new Map(file);
     }
 
@@ -37,6 +44,7 @@ public class Board {
                 return;
             }
             else if (token.equals("shift")){
+                this.robot.keyPress(KeyEvent.VK_SHIFT);
                 shift = true;
                 return;
             }
@@ -49,8 +57,11 @@ public class Board {
                 return;
             }
             else if (token.equals("release")){
+                this.robot.keyRelease(KeyEvent.VK_SHIFT);
                 shift = false;
+                this.robot.keyRelease(KeyEvent.VK_ALT);
                 alter = false;
+                this.robot.keyRelease(KeyEvent.VK_CONTROL);
                 control = false;
                 return;
             }
@@ -68,7 +79,7 @@ public class Board {
 
     }
 
-    private static void sendKeys(String token) {
+    private void sendKeys(String token) {
         for (int i = 0; i < token.length(); i++) {
             char currChar = token.charAt(i);
             send((int) currChar);
@@ -76,17 +87,12 @@ public class Board {
         send((int) ' ');
     }
 
-    private static void send(int key) {
-        try {
-            Robot robot = new Robot();
-            if (!isValidKey(key)) {
-                return;
-            }
-            int code = KeyEvent.getExtendedKeyCodeForChar(key);
-            robot.keyPress(code);
-            robot.keyRelease(code);
-        } catch (AWTException e) {
-            e.printStackTrace();
+    private void send(int key) {
+        if (!isValidKey(key)) {
+            return;
         }
+        int code = KeyEvent.getExtendedKeyCodeForChar(key);
+        this.robot.keyPress(code);
+        this.robot.keyRelease(code);
     }
 }
