@@ -8,7 +8,7 @@ public class Board {
     Robot robot;
     private Map m;
 
-    private boolean escape = true;
+    private boolean escape = false;
     private boolean shift = false;
     private boolean alter = false;
     private boolean control = false;

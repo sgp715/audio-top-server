@@ -1,3 +1,9 @@
+.idea/*
+.settings/*
+*.iml
+.project
+.settings
+
 # Compiled class file
 *.class
 

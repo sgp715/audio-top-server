@@ -26,9 +26,9 @@ public class Map {
         tokenMap.put("swollen", KeyEvent.VK_SEMICOLON);
         tokenMap.put("dot", KeyEvent.VK_PERIOD);
         tokenMap.put("comma", KeyEvent.VK_COMMA);
-//        tokenMap.put("question", KeyEvent.VK);
-        tokenMap.put("quote", KeyEvent.VK_QUOTE);
-        tokenMap.put("deck", KeyEvent.VK_BACK_QUOTE);
+        tokenMap.put("question", (int)'?');
+        tokenMap.put("quote", (int)'\'');
+        tokenMap.put("deck", (int)'\"');
         tokenMap.put("bang", KeyEvent.VK_SEMICOLON);
         tokenMap.put("home", KeyEvent.VK_HOME);
         tokenMap.put("away", KeyEvent.VK_END);
@@ -52,6 +52,7 @@ public class Map {
         tokenMap.put("divide", KeyEvent.VK_DIVIDE);
         tokenMap.put("equals", KeyEvent.VK_EQUALS);
         tokenMap.put("space", KeyEvent.VK_SPACE);
+        tokenMap.put("blank", KeyEvent.VK_SPACE);
         tokenMap.put("alpha", KeyEvent.VK_A);
         tokenMap.put("beta", KeyEvent.VK_B);
         tokenMap.put("charlie", KeyEvent.VK_C);
@@ -63,7 +64,8 @@ public class Map {
         tokenMap.put("india", KeyEvent.VK_I);
         tokenMap.put("juliet", KeyEvent.VK_J);
         tokenMap.put("kevin", KeyEvent.VK_K);
-        tokenMap.put("mic", KeyEvent.VK_M);
+        tokenMap.put("lima", KeyEvent.VK_L);
+        tokenMap.put("mint", KeyEvent.VK_M);
         tokenMap.put("november", KeyEvent.VK_N);
         tokenMap.put("oscar", KeyEvent.VK_O);
         tokenMap.put("papa", KeyEvent.VK_P);
@@ -77,14 +79,6 @@ public class Map {
         tokenMap.put("x-ray ", KeyEvent.VK_X);
         tokenMap.put("yankee ", KeyEvent.VK_Y);
         tokenMap.put("zulu ", KeyEvent.VK_Z);
-    }
-
-    public static char key2Ascii(int key) {
-        return (char) key;
-    }
-
-    public static int ascii2Key(char ascii) {
-        return (int) ascii;
     }
 
     public Integer map(String token) {
