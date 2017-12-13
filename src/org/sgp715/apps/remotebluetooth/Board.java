@@ -49,10 +49,12 @@ public class Board {
                 return;
             }
             else if (token.equals("alter")){
+                this.robot.keyPress(KeyEvent.VK_ALT);
                 alter = true;
                 return;
             }
             else if (token.equals("control")){
+                this.robot.keyPress(KeyEvent.VK_CONTROL);
                 control = true;
                 return;
             }

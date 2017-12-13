@@ -24,7 +24,7 @@ public class Map {
         tokenMap.put("racket", KeyEvent.VK_CLOSE_BRACKET);
         tokenMap.put("colon", KeyEvent.VK_COLON);
         tokenMap.put("swollen", KeyEvent.VK_SEMICOLON);
-        tokenMap.put("dot", KeyEvent.VK_PERIOD);
+        tokenMap.put("point", KeyEvent.VK_PERIOD);
         tokenMap.put("comma", KeyEvent.VK_COMMA);
         tokenMap.put("question", (int)'?');
         tokenMap.put("quote", (int)'\'');
