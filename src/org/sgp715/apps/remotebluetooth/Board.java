@@ -14,7 +14,7 @@ public class Board {
     private boolean control = false;
 
 
-    public Board(String file) {
+    public Board() {
         try {
             this.robot = new Robot();
         } catch (AWTException e) {
@@ -23,19 +23,16 @@ public class Board {
         this.m = new Map();
     }
 
-    private static boolean isValidKey(int key) {
-        return true;
-    }
 
+    public void type(String clear){
 
-    public void type(String token){
-
+        String token = clear.toLowerCase();
         if (escape){
             if (token.equals("escape")){
                 escape = false;
                 return;
             }
-            sendKeys(token);
+            sendKeys(clear);
             return;
         }
         else {
@@ -90,11 +87,18 @@ public class Board {
     }
 
     private void send(int key) {
-        if (!isValidKey(key)) {
+        int code = KeyEvent.getExtendedKeyCodeForChar(key);
+        if (!isValidKey(code)) {
             return;
         }
-        int code = KeyEvent.getExtendedKeyCodeForChar(key);
+        System.out.println(code);
         this.robot.keyPress(code);
         this.robot.keyRelease(code);
+    }
+
+    private static boolean isValidKey(int key) {
+
+        if (key <= 0) return false;
+        return true;
     }
 }

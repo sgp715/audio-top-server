@@ -60,7 +60,7 @@ public class WaitThread implements Runnable{
 	            connection = notifier.acceptAndOpen();
 	            Thread processThread = new Thread(new ProcessConnectionThread(connection, charQ));
 	            processThread.start();
-				Thread typeThread = new Thread(new TypeThread(charQ));
+				Thread typeThread = new Thread(new InuptThread(charQ));
 				typeThread.start();
 			} catch (Exception e) {
 				e.printStackTrace();

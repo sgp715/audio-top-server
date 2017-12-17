@@ -15,8 +15,6 @@ public class ProcessConnectionThread implements Runnable {
 	private BlockingQueue charQ;
 
 	private static final int EXIT_CMD = -1;
-	private static final int KEY_RIGHT = 1;
-	private static final int KEY_LEFT = 2;
 
 	public ProcessConnectionThread(StreamConnection connection, BlockingQueue charQ) {
 		this.charQ = charQ;

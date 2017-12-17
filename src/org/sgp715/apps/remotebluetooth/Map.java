@@ -10,7 +10,7 @@ public class Map {
     {
         tokenMap = new HashMap<String, Integer>();
         tokenMap.put("tab", KeyEvent.VK_TAB);
-        tokenMap.put("submit", KeyEvent.VK_ENTER);
+        tokenMap.put("send", KeyEvent.VK_ENTER);
         tokenMap.put("delete", KeyEvent.VK_DELETE);
         tokenMap.put("back", KeyEvent.VK_BACK_SPACE);
         tokenMap.put("tab", KeyEvent.VK_TAB);
@@ -29,7 +29,7 @@ public class Map {
         tokenMap.put("question", (int)'?');
         tokenMap.put("quote", (int)'\'');
         tokenMap.put("deck", (int)'\"');
-        tokenMap.put("bang", KeyEvent.VK_SEMICOLON);
+        tokenMap.put("bang", KeyEvent.VK_EXCLAMATION_MARK);
         tokenMap.put("home", KeyEvent.VK_HOME);
         tokenMap.put("away", KeyEvent.VK_END);
         tokenMap.put("copy", KeyEvent.VK_COPY);
@@ -46,7 +46,7 @@ public class Map {
         tokenMap.put("asterix", KeyEvent.VK_AMPERSAND);
         tokenMap.put("ampersand", KeyEvent.VK_AMPERSAND);
         tokenMap.put("at", KeyEvent.VK_AT);
-        tokenMap.put("hashtag", KeyEvent.VK_NUMBER_SIGN);
+        tokenMap.put("pound", KeyEvent.VK_NUMBER_SIGN);
         tokenMap.put("plus", KeyEvent.VK_PLUS);
         tokenMap.put("minus", KeyEvent.VK_MINUS);
         tokenMap.put("divide", KeyEvent.VK_DIVIDE);
