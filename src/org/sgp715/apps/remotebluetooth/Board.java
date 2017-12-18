@@ -26,57 +26,42 @@ public class Board {
 
     public void type(String clear){
 
+
         String token = clear.toLowerCase().replaceAll("\\s+","");
-        if (escape){
-            if (token.equals("escape")){
+        if (escape) {
+            if (token.equals("off")){
                 escape = false;
-                return;
+            } else {
+                sendKeys(clear);
             }
-            sendKeys(clear);
-            return;
-        }
-        else {
-            if (token.equals("escape")){
+        } else {
+            if (token.equals("on")){
                 escape = true;
-                return;
-            }
-            else if (token.equals("shift")){
-                this.robot.keyPress(KeyEvent.VK_SHIFT);
-                shift = true;
-                return;
-            }
-            else if (token.equals("alter")){
+            } else if (token.equals("shift")){
+                    this.robot.keyPress(KeyEvent.VK_SHIFT);
+                    shift = true;
+            } else if (token.equals("alter")){
                 this.robot.keyPress(KeyEvent.VK_ALT);
                 alter = true;
-                return;
-            }
-            else if (token.equals("control")){
+            } else if (token.equals("control")){
                 this.robot.keyPress(KeyEvent.VK_CONTROL);
                 control = true;
-                return;
-            }
-            else if (token.equals("release")){
+            } else if (token.equals("release")){
                 this.robot.keyRelease(KeyEvent.VK_SHIFT);
                 shift = false;
                 this.robot.keyRelease(KeyEvent.VK_ALT);
                 alter = false;
                 this.robot.keyRelease(KeyEvent.VK_CONTROL);
                 control = false;
-                return;
-            }
-            else {
+            } else {
                 Integer mapVal = m.map(token);
-                if (mapVal != null) {
+                if (mapVal != null){
                     send(mapVal);
                 } else {
-                    sendKeys(token);
-                    send((int) ' ');
+                    sendKeys(clear);
                 }
             }
-
         }
-
-
     }
 
     private void sendKeys(String token) {
@@ -84,6 +69,7 @@ public class Board {
             char currChar = token.charAt(i);
             send((int) currChar);
         }
+        send((int) ' ');
     }
 
     private void send(int key) {

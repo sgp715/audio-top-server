@@ -53,6 +53,9 @@ public class InuptThread implements Runnable {
                              board.type(currentToken);
                              currentToken = "";
                              state = 0;
+                         } else if (newByte == 32) {
+                             board.type(currentToken);
+                             currentToken = "";
                          } else {
                              currentToken += (char) newByte;
                          }
