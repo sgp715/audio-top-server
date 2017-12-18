@@ -10,7 +10,7 @@ public class Map {
     {
         tokenMap = new HashMap<String, Integer>();
         tokenMap.put("tab", KeyEvent.VK_TAB);
-        tokenMap.put("send", KeyEvent.VK_ENTER);
+        tokenMap.put("return", KeyEvent.VK_ENTER);
         tokenMap.put("delete", KeyEvent.VK_DELETE);
         tokenMap.put("back", KeyEvent.VK_BACK_SPACE);
         tokenMap.put("tab", KeyEvent.VK_TAB);
@@ -22,8 +22,8 @@ public class Map {
         tokenMap.put("early", KeyEvent.VK_BRACERIGHT);
         tokenMap.put("bracket", KeyEvent.VK_OPEN_BRACKET);
         tokenMap.put("racket", KeyEvent.VK_CLOSE_BRACKET);
-        tokenMap.put("colon", KeyEvent.VK_COLON);
-        tokenMap.put("swollen", KeyEvent.VK_SEMICOLON);
+        tokenMap.put("colon", (int)':');
+        tokenMap.put("swollen", (int)':');
         tokenMap.put("point", KeyEvent.VK_PERIOD);
         tokenMap.put("comma", KeyEvent.VK_COMMA);
         tokenMap.put("question", (int)'?');

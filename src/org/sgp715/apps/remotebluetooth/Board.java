@@ -26,7 +26,7 @@ public class Board {
 
     public void type(String clear){
 
-        String token = clear.toLowerCase();
+        String token = clear.toLowerCase().replaceAll("\\s+","");
         if (escape){
             if (token.equals("escape")){
                 escape = false;
@@ -65,11 +65,12 @@ public class Board {
                 return;
             }
             else {
-                Integer mapVal = m.map(token.replaceAll("\\s+",""));
+                Integer mapVal = m.map(token);
                 if (mapVal != null) {
                     send(mapVal);
                 } else {
                     sendKeys(token);
+                    send((int) ' ');
                 }
             }
 
@@ -83,7 +84,6 @@ public class Board {
             char currChar = token.charAt(i);
             send((int) currChar);
         }
-        send((int) ' ');
     }
 
     private void send(int key) {
