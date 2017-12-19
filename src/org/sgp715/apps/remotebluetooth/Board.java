@@ -23,6 +23,14 @@ public class Board {
         this.m = new Map();
     }
 
+    private void releaseControlKeys() {
+        this.robot.keyRelease(KeyEvent.VK_SHIFT);
+        shift = false;
+        this.robot.keyRelease(KeyEvent.VK_ALT);
+        alter = false;
+        this.robot.keyRelease(KeyEvent.VK_CONTROL);
+        control = false;
+    }
 
     public void type(String clear){
 
@@ -46,17 +54,20 @@ public class Board {
             } else if (token.equals("control")){
                 this.robot.keyPress(KeyEvent.VK_CONTROL);
                 control = true;
-            } else if (token.equals("release")){
-                this.robot.keyRelease(KeyEvent.VK_SHIFT);
-                shift = false;
-                this.robot.keyRelease(KeyEvent.VK_ALT);
-                alter = false;
-                this.robot.keyRelease(KeyEvent.VK_CONTROL);
-                control = false;
-            } else {
+            }
+//            else if (token.equals("release")){
+//                this.robot.keyRelease(KeyEvent.VK_SHIFT);
+//                shift = false;
+//                this.robot.keyRelease(KeyEvent.VK_ALT);
+//                alter = false;
+//                this.robot.keyRelease(KeyEvent.VK_CONTROL);
+//                control = false;
+//            }
+            else {
                 Integer mapVal = m.map(token);
                 if (mapVal != null){
                     send(mapVal);
+                    releaseControlKeys();
                 } else {
                     sendKeys(clear);
                 }
@@ -68,6 +79,9 @@ public class Board {
         for (int i = 0; i < token.length(); i++) {
             char currChar = token.charAt(i);
             send((int) currChar);
+            if (i == 0) {
+                releaseControlKeys();
+            }
         }
         send((int) ' ');
     }
