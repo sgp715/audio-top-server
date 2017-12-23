@@ -3,13 +3,13 @@ package org.sgp715.apps.remotebluetooth;
 import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 
-public class InuptThread implements Runnable {
+public class InputThread implements Runnable {
 
     private BlockingQueue charQ;
     private Board board;
     private Mouse mouse;
 
-    public InuptThread(BlockingQueue charQ){
+    public InputThread(BlockingQueue charQ){
         this.charQ = charQ;
         this.board = new Board();
         this.mouse = new Mouse();
