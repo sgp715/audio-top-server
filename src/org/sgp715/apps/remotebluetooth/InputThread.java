@@ -37,7 +37,9 @@ public class InputThread implements Runnable {
                              state = 4;
                          } else if (newByte == 3) {
                              state = 5;
-                         } else {
+                         } else if (newByte == 4) {
+                            state = 6;
+                        } else {
                              state = 0;
                          }
                          break;
@@ -73,6 +75,32 @@ public class InputThread implements Runnable {
                              mouse.rightRelease();
                          }
                          state = 0;
+                         break;
+                     case 6:
+                         if (newByte == 0) {
+                             state = 7;
+                         } else {
+                             state = 0;
+                         }
+                         break;
+                     case 7:
+                         if (newByte == 0) {
+                             mouse.setX(Float.parseFloat(currentToken));
+                             currentToken = "";
+                             state = 8;
+                         } else {
+                             currentToken += (char) newByte;
+                         }
+                         break;
+                     case 8:
+                         if (newByte == 0) {
+                             mouse.setY(Float.parseFloat(currentToken));
+                             mouse.move();
+                             currentToken = "";
+                             state = 0;
+                         } else {
+                             currentToken += (char) newByte;
+                         }
                          break;
                  }
 
