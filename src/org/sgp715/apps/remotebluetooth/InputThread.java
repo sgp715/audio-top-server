@@ -1,6 +1,5 @@
 package org.sgp715.apps.remotebluetooth;
 
-import java.util.HashMap;
 import java.util.concurrent.BlockingQueue;
 
 public class InputThread implements Runnable {

@@ -2,20 +2,28 @@ package org.sgp715.apps.remotebluetooth;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
+
 
 public class Mouse {
 
     Robot robot;
-
-    private static boolean lClick;
-    private static boolean rClick;
 
     private static double width;
     private static double height;
 
     private float x = 0;
     private float y = 0;
+
+    private static int SCREEN_W;
+    private static int SCREEN_H;
+    private static int BOOST;
+
+    static {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        SCREEN_W = (int) screenSize.getWidth();
+        SCREEN_H = (int) screenSize.getHeight();
+        BOOST = 3;
+    }
 
     private int a = 5;
 
@@ -64,25 +72,13 @@ public class Mouse {
     }
 
     public void move() {
-//        robot.mouseMove(x, y);
-//        System.out.println(this.x);
-//        System.out.println(this.y);
         Point p = MouseInfo.getPointerInfo().getLocation();
         int x = (int) p.getX();
         int y = (int) p.getY();
-        int delta = (1 * a);
-        if (getX() > 0) {
-            robot.mouseMove(x + delta, y);
-        } else if (getX() < 0) {
-            robot.mouseMove(x - delta, y);
-        }
-        setX(0);
-        if (getY() > 0) {
-            robot.mouseMove(x, y + delta);
-        } else if (getY() < 0) {
-            robot.mouseMove(x, y - delta);
-        }
-        setY(0);
+        int xDiff = (int) (getX() * SCREEN_W * BOOST);
+        int yDiff = (int) (getY() * SCREEN_H * BOOST);
+        robot.mouseMove(x + xDiff,
+                y + yDiff);
     }
 
 }
