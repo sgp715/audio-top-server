@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: bluecove-2.1.0.jar bluecove-gpl-2.1.0.jar
+Main-Class: org.sgp715.apps.remotebluetooth.RemoteBluetoothServer
+

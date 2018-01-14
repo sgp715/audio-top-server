@@ -23,33 +23,25 @@ public class InputThread implements Runnable {
                  int newByte = ((Integer) charQ.take()).intValue();
                  switch (state) {
                      case 0:
-                         if (newByte == 0) {
+                         if (newByte == 1) {
                              state = 1;
-                         } else {
-                             state = 0;
+                         } else if (newByte == 2) {
+                             if (mouse.islClicked()) {
+                                 mouse.leftRelease();
+                             } else {
+                                 mouse.leftClick();
+                             }
+                         } else if (newByte == 3) {
+                             if (mouse.isrClicked()) {
+                                 mouse.rightRelease();
+                             } else {
+                                 mouse.rightClick();
+                             }
+                         } else if (newByte == 4) {
+                            state = 2;
                          }
                          break;
                      case 1:
-                         if (newByte == 1) {
-                             state = 2;
-                         } else if (newByte == 2) {
-                             state = 4;
-                         } else if (newByte == 3) {
-                             state = 5;
-                         } else if (newByte == 4) {
-                            state = 6;
-                        } else {
-                             state = 0;
-                         }
-                         break;
-                     case 2:
-                         if (newByte == 0) {
-                            state = 3;
-                         } else {
-                             state = 0;
-                         }
-                         break;
-                     case 3:
                          if (newByte == 0) {
                              board.type(currentToken);
                              currentToken = "";
@@ -61,37 +53,16 @@ public class InputThread implements Runnable {
                              currentToken += (char) newByte;
                          }
                          break;
-                     case 4:
-                         if (newByte == 0) {
-                             mouse.leftClick();
-                             mouse.leftRelease();
-                         }
-                         state = 0;
-                         break;
-                     case 5:
-                         if (newByte == 0) {
-                             mouse.rightClick();
-                             mouse.rightRelease();
-                         }
-                         state = 0;
-                         break;
-                     case 6:
-                         if (newByte == 0) {
-                             state = 7;
-                         } else {
-                             state = 0;
-                         }
-                         break;
-                     case 7:
+                     case 2:
                          if (newByte == 0) {
                              mouse.setX(Float.parseFloat(currentToken));
                              currentToken = "";
-                             state = 8;
+                             state = 3;
                          } else {
                              currentToken += (char) newByte;
                          }
                          break;
-                     case 8:
+                     case 3:
                          if (newByte == 0) {
                              mouse.setY(Float.parseFloat(currentToken));
                              mouse.move();

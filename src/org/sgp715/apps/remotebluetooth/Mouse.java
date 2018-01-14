@@ -14,6 +14,10 @@ public class Mouse {
     private float x = 0;
     private float y = 0;
 
+    private static boolean rClicked = false;
+
+    private static boolean lClicked = false;
+
     private static int SCREEN_W;
     private static int SCREEN_H;
     private static int BOOST;
@@ -43,6 +47,14 @@ public class Mouse {
         this.y = y;
     }
 
+    public static boolean isrClicked() {
+        return rClicked;
+    }
+
+    public static boolean islClicked() {
+        return lClicked;
+    }
+
     public Mouse() {
         try {
             this.robot = new Robot();
@@ -56,19 +68,22 @@ public class Mouse {
 
     public void leftClick() {
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        lClicked = true;
     }
 
     public void leftRelease() {
-
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        lClicked = false;
     }
 
     public void rightClick() {
         robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
+        rClicked = true;
     }
 
     public void rightRelease() {
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+        rClicked = false;
     }
 
     public void move() {
