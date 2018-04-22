@@ -2,6 +2,7 @@ package org.sgp715.apps.remotebluetooth;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 
 public class Board {
 
@@ -12,7 +13,23 @@ public class Board {
     private boolean shift = false;
     private boolean alter = false;
     private boolean control = false;
+    private boolean times = false;
+    private int multiplier = 1;
 
+    // TODO: https://stackoverflow.com/questions/26948858/converting-words-to-numbers-in-java?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+    private static HashMap<String, Integer> numpad = new HashMap<>();
+    static {
+        numpad.put("one", 0);
+        numpad.put("one", 1);
+        numpad.put("two", 2);
+        numpad.put("three", 3);
+        numpad.put("four", 4);
+        numpad.put("five", 5);
+        numpad.put("six", 6);
+        numpad.put("seven", 7);
+        numpad.put("eight", 8);
+        numpad.put("nine", 9);
+    }
 
     public Board() {
         try {
@@ -31,7 +48,6 @@ public class Board {
         this.robot.keyRelease(KeyEvent.VK_CONTROL);
         control = false;
     }
-
     public void type(String clear){
 
 
@@ -63,15 +79,39 @@ public class Board {
 //                this.robot.keyRelease(KeyEvent.VK_CONTROL);
 //                control = false;
 //            }
+            else if (token.equals("times")) {
+                times = true;
+            }
+            else if (times) {
+//                TODO:
+//                try {
+//                    multiplier = Integer.parseInt(token);
+//                } catch (Exception e) {
+//                    System.out.println(e);
+//                }
+//
+                Integer found = numpad.get(token);
+                if (found != null) {
+                    System.out.println("Multiplier: " + found);
+                    multiplier = found;
+                } else {
+                    System.out.println("Could not find multiplier: " + token.toLowerCase());
+                }
+                times = false;
+            }
             else {
                 Integer mapVal = m.map(token);
-                if (mapVal != null){
-                    send(mapVal);
-                    releaseControlKeys();
-                } else {
-                    sendKeys(clear);
+                for (int i = 0; i < multiplier; i++) {
+                    if (mapVal != null) {
+                        send(mapVal);
+                        releaseControlKeys();
+                    } else {
+                        sendKeys(clear);
+                    }
                 }
+                multiplier = 1;
             }
+
         }
     }
 
